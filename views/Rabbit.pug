@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1=title
+   - let rabbit  =[{Name:"Sravani",Cost:"$50",Weight:56},{Name:"Gangula",Cost:"$30",Weight:60},{Name:"Reddy",Cost:"$40",Weight:70}]
+  div(class="container-fluid mt-3")
+  div(class="row")
+    each ra,index in rabbit
+        div(class="col-sm-2" OnClick=`buy(${index})` ) #{ra.Name} - #{ra.Cost} - #{ra.Weight}
+    script.
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }    
