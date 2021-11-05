@@ -1,5 +1,5 @@
-# fwb82gangula
-Heroku Server https://fwb82gangula.herokuapp.com/
+# db82gangula
+Heroku Server https://db82gangula.herokuapp.com/
 
 Class: Rabbit
 
