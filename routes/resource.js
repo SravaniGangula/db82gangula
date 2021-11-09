@@ -2,20 +2,20 @@ var express = require('express');
 var router = express.Router();
 // Require controller modules.
 var api_controller = require('../controllers/api');
-var costume_controller = require('../controllers/costume');
+var Rabbit_controller = require('../controllers/Rabbit');
 /// API ROUTE ///
 // GET resources base.
 router.get('/resource', api_controller.api);
-/// COSTUME ROUTES ///
-// POST request for creating a Costume.
-router.post('/resource/costumes', costume_controller.costume_create_post);
-// DELETE request to delete Costume.
-router.delete('/resource/costumes/:id', costume_controller.costume_delete);
-// PUT request to update Costume.
-router.put('/resource/costumes/:id',
-costume_controller.costume_update_put);
-// GET request for one Costume.
-router.get('/resource/costumes/:id', costume_controller.costume_detail);
-// GET request for list of all Costume items.
-router.get('/resource/costumes', costume_controller.costume_list);
+/// Rabbit ROUTES ///
+// POST request for creating a Rabbit.
+router.post('/resource/Rabbits', Rabbit_controller.Rabbit_create_post);
+// DELETE request to delete Rabbit.
+router.delete('/resource/Rabbits/:id', Rabbit_controller.Rabbit_delete);
+// PUT request to update Rabbit.
+router.put('/resource/Rabbits/:id',
+Rabbit_controller.Rabbit_update_put);
+// GET request for one Rabbit.
+router.get('/resource/Rabbits/:id', Rabbit_controller.Rabbit_detail);
+// GET request for list of all Rabbit items.
+router.get('/resource/Rabbits', Rabbit_controller.Rabbit_list);
 module.exports = router;

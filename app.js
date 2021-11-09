@@ -16,7 +16,7 @@ var RabbitRouter = require('./routes/Rabbit');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var usersRouter = require('./routes/users');
-var Costume = require("./models/costume");
+var Rabbit = require("./models/Rabbit");
 var resourceRouter = require('./routes/resource');
 
 // We can seed the collection if needed on
@@ -29,15 +29,15 @@ console.log("Connection to DB succeeded");
 });
 async function recreateDB(){
 // Delete everything
-await Costume.deleteMany();
+await Rabbit.deleteMany();
 let instance1 = new
-Costume({Name:"WildRabbit", Cost:"$50",
+Rabbit({Name:"WildRabbit", Cost:"$50",
 Weight:25.4});
 instance1.save( function(err,doc) {
 if(err) return console.error(err);
 console.log("First object saved")
 });
-let instance2 = new Costume({
+let instance2 = new Rabbit({
   Name: "DomesRabbit",
   Cost: "$67",
   Weight: 34
@@ -46,7 +46,7 @@ instance2.save(function (err, doc) {
   if (err) return console.error(err);
   console.log("Second object saved")
 });
-let instance3 = new Costume({
+let instance3 = new Rabbit({
   Name: "Forebit",
   Cost: "$78",
   Weight: 45
