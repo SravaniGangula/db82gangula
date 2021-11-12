@@ -1,20 +1,43 @@
 var Rabbit = require('../models/Rabbit');
 // List of all Rabbits
 
-// for a specific Rabbit.
-exports.Rabbit_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: Rabbit detail: ' + req.params.id);
-};
+// for a specific Rabbit. 
+exports.Rabbit_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await Rabbit.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
+}; 
 // Handle Rabbit create on POST.
 
 // Handle Rabbit delete form on DELETE.
 exports.Rabbit_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Rabbit delete DELETE ' + req.params.id);
 };
-// Handle Rabbit update form on PUT.
-exports.Rabbit_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Rabbit update PUT' + req.params.id);
-};
+// Handle Rabbit update form on PUT. 
+exports.Rabbit_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Rabbit.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.Name)  
+               toUpdate.Name = req.body.Name; 
+        if(req.body.Cost) toUpdate.Cost = req.body.Cost; 
+        if(req.body.Weight) toUpdate.Weight = req.body.Weight;
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
+}; 
 
 // List of all Rabbits
 exports.Rabbit_list = async function(req, res) {
