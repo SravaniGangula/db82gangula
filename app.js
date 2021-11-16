@@ -17,6 +17,8 @@ var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var usersRouter = require('./routes/users');
 var Rabbit = require("./models/Rabbit");
+
+var detailRouter= require('./routes/detail');
 var resourceRouter = require('./routes/resource');
 
 // We can seed the collection if needed on
@@ -78,6 +80,8 @@ app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
 app.use('/users', usersRouter);
 app.use('/resource', resourceRouter);
+
+app.use('/detail', detailRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

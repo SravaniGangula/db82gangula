@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+    - let Rabbitid = toShow._id
+    - let RabbitName = toShow.Name
+    - let RabbitCost = toShow.Cost
+    - let RabbitWeight = toShow.Weight
+    div
+      div.row
+        div(class='RabbitAttr mr-3') Rabbit ID is:
+        div #{Rabbitid}
+      div.row
+        div(class='RabbitAttr mr-3') Rabbit Name is:
+        div #{RabbitName}
+      div.row
+        div(class='RabbitAttr mr-3') Rabbit Cost is:
+        div #{RabbitCost}
+      div.row
+        div(class='RabbitAttr mr-3') Rabbit Weight  is:
+        div #{RabbitWeight}
