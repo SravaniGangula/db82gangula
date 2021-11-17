@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  div(class="container")
+    div(class="col-md-12")
+      div(class="col-md-6 col-sm-8 col-xs-4")
+        h2(class="text-primary")= title
+      div(class="col-md-4")
+        form(id='RabbitForm', action="/resource/resource/Rabbits", method="POST")
+          div.form-group
+              label(for='Name') Rabbit Name: 
+              input#name(type='text', name='Name',class="form-control form-control-sm")
+          div.form-group
+              label(for='Cost') Rabbit Cost: 
+              input#author(type='text', name='Cost',class="form-control form-control-sm")
+          div.form-group
+              label(for='Weight') Rabbit Weight: 
+              input#season(type='number', name='Weight',class="form-control form-control-sm")
+          input(type="submit" class="btn btn-primary btn-sm")
+      div(class="col-md-4")
+  script.
+    document.forms['RabbitForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          document.getElementById("errors").style.display = "block"
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+            alert("Save succeded")
+          }
+        }).catch((error) => {
+          // TODO handle error
+          alert("Save failed " + error)
+        });
+    });

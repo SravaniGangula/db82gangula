@@ -1,5 +1,45 @@
 var Rabbit = require('../models/Rabbit');
 
+// Handle a delete one view with id from query
+exports.Rabbit_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await Rabbit.findById(req.query.id)
+    res.render('Rabbitdelete', { title: 'Rabbit Delete', toShow:
+    result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+// Handle building the view for updating a Rabbit.
+// query provides the id
+exports.Rabbit_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await Rabbit.findById(req.query.id)
+    res.render('Rabbitupdate', { title: 'Rabbit Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
+// Handle building the view for creating a Rabbit.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.Rabbit_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('Rabbitcreate', { title: 'Rabbit Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
 
 // Handle a show one view with id specified by query 
 exports.Rabbit_view_one_Page = async function (req, res) {
