@@ -1,6 +1,6 @@
 extends layout
 block content
- h1= title
+ h2(class="text-success")= title
  - let Rabbitid = toShow._id
  - let RabbitName = toShow.Name
  - let RabbitCost = toShow.Cost
@@ -8,7 +8,7 @@ block content
  div.row(class='mb-2')
    div.mr-1 ID is
    div #{Rabbitid}
- - let actionid = "/resource/resource/Rabbits/" + Rabbitid
+ - let actionid = "/resource/Rabbits/" + Rabbitid
  form(id='RabbitForm', action= actionid, method="PUT")
   div.form-group
    label.RabbitAttr(for='Name') Rabbit Name 
@@ -19,7 +19,8 @@ block content
   div.form-group
     label.RabbitAttr(for='Weight') Rabbit Weight
     input#cost(type='number', name='Weight', value= RabbitWeight )
-    input(type="submit")
+    <br>
+    input(type="submit" class="btn btn-primary btn-sm")
  script.
   document.forms['RabbitForm'].addEventListener('submit', (event) => {
    event.preventDefault();
