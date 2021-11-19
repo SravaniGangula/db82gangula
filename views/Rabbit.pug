@@ -2,13 +2,16 @@ extends layout
 
 block content
   h1=title
-   - let rabbit=results 
-  div(class="container-fluid mt-3")
-  div(class="row")
-    each ra,index in rabbit
-        div(class="col-sm-2" OnClick=`buy(${index})` ) #{ra.Name} - #{ra.Cost} - #{ra.Weight}
-    script.
-      function buy(itemNo)
+   - let Rabbits=results 
+  div(class="container-fluid")
+    div(class="row m-1")
+      each Rabbit in Rabbits
+        - let destination = `dispatch(\"/update/update?id=${Rabbit._id}\")`
+        div(class="col-sm-2 "  class="m-1")  #{Rabbit.Name} - #{Rabbit.Cost} - #{Rabbit.Weight}
+          button.btn( class="btn-primary"  class="m-1" class="btn-toolbar", onclick= destination) Update
+  script.
+  
+      function dispatch(path)
       {
-        alert(`You purchased Item ${itemNo+1}`)
-      }    
+      window.location.href=path
+      }
