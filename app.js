@@ -107,13 +107,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-module.exports = app;
-const connectionString = process.env.MONGO_CON
-mongoose = require('mongoose');
-mongoose.connect(connectionString,
-  {
-    useNewUrlParser: true, useUnifiedTopology: true
-  });
+
 
 
 
