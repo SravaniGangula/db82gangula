@@ -1,6 +1,9 @@
 const mongoose = require("mongoose")
 const RabbitSchema = mongoose.Schema({
-Name: String,
+Name: {
+    type: String,
+    minLength: 2,
+},
 Cost: String,
 Weight: Number
 })

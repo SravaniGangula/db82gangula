@@ -1,17 +1,33 @@
 extends layout
 
 block content
-  h1=title
-   - let Rabbits=results 
+  - let create = `dispatch(\"/Rabbit/create\")`
+  button.btn(class="btn-primary m1-1", onclick=create) Create
+  h1= title
+  p Welcome to the Rabbit pug
   div(class="container-fluid")
-    div(class="row m-1")
-      each Rabbit in Rabbits
-        - let destination = `dispatch(\"/update/update?id=${Rabbit._id}\")`
-        div(class="col-sm-2 "  class="m-1")  #{Rabbit.Name} - #{Rabbit.Cost} - #{Rabbit.Weight}
-          button.btn( class="btn-primary"  class="m-1" class="btn-toolbar", onclick= destination) Update
-  script.
-  
-      function dispatch(path)
-      {
-      window.location.href=path
-      }
+        div(class="row")
+            -
+                let Rabbit = results
+
+  div(class="container-fluid") 
+    div(class="row") 
+      each item in Rabbit 
+        - let destination = `dispatch(\"/Rabbit/update?id=${item._id}\")`
+        - let detail=`dispatch(\"/Rabbit/detail/?id=${item._id}\")`
+        - let del=`dispatch(\"/Rabbit/delete/?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.Name}(#{item.Cost}) is #{item.Size}
+            button.btn( class="btn-primary ml-1", onclick= destination) Update  
+            button.btn( class="btn-dark ml-2", onclick=detail ) Get Detail
+            button.btn( class="btn-warning ml-2", onclick=del ) Delete
+
+        script.                
+            function buy(itemNo)
+            {
+                  alert(`you purchased Item ${itemNo+1}`)
+            }
+        script. 
+             function dispatch(path)
+            { 
+                 window.location.href=path 
+            } 
